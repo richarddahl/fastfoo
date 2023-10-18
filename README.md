@@ -39,8 +39,7 @@ activate the environment
 > python manage.py migrate
 > python manage.py createroledata
 > python manage.py createfoobardata
-> python 
-
+> uvicorn main:app --reload
 
 then go to localhost:8000/ to explore the zero knowledge UI and localhost:8000/api to explore the fastapi endpoints
 
