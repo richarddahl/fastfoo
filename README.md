@@ -30,23 +30,19 @@ A django app using a subclass of django.auth.models.BaseUser and other models to
 A django app that allows users to create and consume custom queries throughout a django project
 
 #### To Explore:
-download the project and place in a python3.10 virtual environment.
+download the project and place in a python3.11 virtual environment.
 activate the environment
 
 > pip install -r requirements.txt
-
-Configure foo.settings with the appropriate postgres database configuration
 
 > cd foo
 > python manage.py migrate
 > python manage.py createroledata
 > python manage.py createfoobardata
+> python 
 
-Browse to localhost:8000/admin/
 
-login with email: admin__at__foobar.com, password: thisisabadtoken
-
-then go to localhost:8000/app/ to explore
+then go to localhost:8000/ to explore the zero knowledge UI and localhost:8000/api to explore the fastapi endpoints
 
 #### Todo
 A metric sh*tton, just getting started, look at the repo's issue tracker for further information.
