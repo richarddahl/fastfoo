@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" class="sl-theme-dark">
+  <head>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.8.0/cdn/themes/light.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.8.0/cdn/themes/dark.css" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.8.0/cdn/shoelace.js"></script>
+
+    <!-- Load the custom elements -->
+    <script type="module" src="/static/components/zk-grid.js"></script>
+    <script type="module" src="/static/components/zk-logo.js"></script>
+    <script type="module" src="/static/components/zk-toolbar.js"></script>
+    <script type="module" src="/static/components/zk-footer.js"></script>
+    <script type="module" src="/static/components/zk-navigation-menu.js"></script>
+    <script type="module" src="/static/components/zk-placeholder.js"></script>
+    <script type="module" src="/static/components/zk-loading-notification.js"></script>
+    <script type="module" src="/static/components/zk-detail.js"></script>
+    <script type="module" src="/static/components/zk-list.js"></script>
+    <script type="module" src="/static/components/zk-list-menu.js"></script>
+    <script type="module" src="/static/components/zk-list-filter-menu.js"></script>
+    <script type="module" src="/static/components/zk-list-filter-menu-item.js"></script>
+    <script type="module" src="/static/components/zk-list-filter-dialog.js"></script>
+    <script type="module" src="/static/components/zk-list-filter-form.js"></script>
+    <script type="module" src="/static/components/zk-list-sort-menu.js"></script>
+    <script type="module" src="/static/components/zk-list-query-menu.js"></script>
+    <script type="module" src="/static/components/zk-list-checkbox.js"></script>
+    <script type="module" src="/static/components/zk-list-pagination.js"></script>
+    <script type="module" src="/static/components/zk-tile-list.js"></script>
+    <script type="module" src="/static/components/zk-tag-list.js"></script>
+    <script type="module" src="/static/components/zk-tile.js"></script>
+    <script type="module" src="/static/components/zk-form.js"></script>
+
+    <script>
+      (() => {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = localStorage.getItem('theme') || 'auto';
+        document.documentElement.classList.toggle(
+          'sl-theme-dark',
+          theme === 'dark' || (theme === 'auto' && prefersDark)
+        );
+      })();
+    </script>
+  
+    <title>FooBar</title>
+  </head>
+
+  <body>
+    <zk-grid></zk-grid>
+  </body>
+</html>
