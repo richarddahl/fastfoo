@@ -6,13 +6,13 @@ from django.db import models as django_models
 
 
 class ZKModel(django_models.Model):
-
     class Meta:
         abstract = True
 
     @classmethod
     def tile_fields(cls):
         """Returns a list of the fields that will be displayed on the ZK Interface tile
+
         Override this on model to change fields.
         """
         return ["title", "summary", "href"]
