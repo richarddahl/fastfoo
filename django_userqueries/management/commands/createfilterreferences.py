@@ -5,7 +5,7 @@ from django.core.management.base import BaseCommand
 from django.contrib.contenttypes.models import ContentType
 from django.conf import settings
 
-from django_userqueries.models import FilterReference, set_filter_set
+from django_userqueries.models import UserFilterReference, set_filter_set
 
 
 class Command(BaseCommand):
@@ -13,7 +13,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         """ """
-        FilterReference.objects.all().delete()
+        UserFilterReference.objects.all().delete()
         for source_content_type in ContentType.objects.exclude(
             app_label__in=settings.USER_QUERIES.get("EXCLUDE_APP_LABELS", [])
         ):
