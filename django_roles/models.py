@@ -232,6 +232,7 @@ class RoleModel(django_models.Model):
 
     @property
     def get_absolute_url(self):
+        return None
         return reverse(
             f"{self._meta.verbose_name.lower().replace(' ', '')}-detail",
             kwargs={"pk": self.pk},
