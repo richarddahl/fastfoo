@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Request
+from asgiref.sync import sync_to_async
 
 from django.core.paginator import Paginator
 
@@ -13,6 +14,7 @@ router = APIRouter(
 @router.get("/")
 def list_foos(request: Request) -> list[FooSchema]:
     foos = Foo.objects.all()
-    p = Paginator(foos, 25)
-    f_list = [FooSchema(name=foo.name, text=foo.text) for foo in p.get_page(1)]
-    return f_list
+    #p = Paginator(foos, 250)
+    #page = p.get_page(1)
+    page = foos
+    return page
