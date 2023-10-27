@@ -136,7 +136,6 @@ class RoleUser(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = _("Role Users")
 
     def __str__(self):
-        # return f"{self.get_full_name()} | {self.email}"
         return f"{self.email}"
 
     def get_full_name(self):

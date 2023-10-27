@@ -1,3 +1,4 @@
+
 import django.db.models as django_models
 from django.utils.translation import gettext as _
 
@@ -7,10 +8,10 @@ from django_userqueries.models import UserQueryFilterModelMixin
 
 
 # Create your models here.
-
-
 class Foo(RoleModel, ZKModel, UserQueryFilterModelMixin):
     """Foo"""
+
+    PYDANTIC_BASE_MODEL = True
 
     filter_list = []
     filter_set = {}
@@ -148,6 +149,7 @@ class Foo(RoleModel, ZKModel, UserQueryFilterModelMixin):
 class Bar(RoleModel, ZKModel, UserQueryFilterModelMixin):
     """Bar"""
 
+    PYDANTIC_BASE_MODEL = True
     filter_list = []
     filter_set = {}
     filterable_fields = ["__all__"]
@@ -196,6 +198,7 @@ class Bar(RoleModel, ZKModel, UserQueryFilterModelMixin):
 class Baz(RoleModel, ZKModel, UserQueryFilterModelMixin):
     """Baz"""
 
+    PYDANTIC_BASE_MODEL = True
     filter_list = []
     filter_set = {}
     filterable_fields = ["__all__"]

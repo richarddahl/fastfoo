@@ -1,16 +1,20 @@
-from uuid import UUID
-from pydantic import BaseModel
+from .models import Foo, Bar, Baz
+from django_schema import DjBaseModel
 
 
-class BazSchema(BaseModel):
-    pass
-
-
-class FooSchema(BaseModel):
-    name: str
-    text: str | None = None
-    #bar: UUID
-    #bazzes: list[BazSchema]
+class FooSchema(DjBaseModel):
 
     class Config:
-        from_attributes = True
+        model = Foo
+
+
+class BarSchema(DjBaseModel):
+
+    class Config:
+        model = Bar
+
+
+class BazSchema(DjBaseModel):
+
+    class Config:
+        model = Baz
