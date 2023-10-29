@@ -11,5 +11,7 @@ Use only one internal class method in django models._meta.get_fields(): Successf
 
 ### Desired Functionality:
 Support all pydantic BaseModel configuration options: Incomplete
+
 Support creating BaseModel Fields for django Model, classmethods, properties, and instance methods:  Incomplete, needs addt'l configuraiton options supported.
+
 Support multiple BaseModel for each django Model, if desired: NOT WORKING CORRECTLY
