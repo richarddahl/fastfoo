@@ -1,20 +1,44 @@
 from .models import Foo, Bar, Baz
-from django_schema import DjBaseModel
+from django_schema import create_django_schema
 
 
-class FooSchema(DjBaseModel):
+FooBaseSchema = create_django_schema(
+    Foo,
+    schema_name="FooBaseSchema",
+    include=["id", "name", "text"],
+    model_attributes=[
+        {
+            "name": "title",
+            "type": str,
+            "title": "Foo Title",
+            "description": "The title property of the Foo",
+            "default": None,
+        },
+        {
+            "name": "add_2_3",
+            "type": int,
+            "title": "Add 2 + 3",
+            "description": "Just a little addition",
+            "default": None,
+        },
+    ],
+)
 
-    class Config:
-        model = Foo
+FooFullSchema = create_django_schema(
+    Foo,
+    schema_name="FooFullSchema",
+    # field_configs=[{"bar": {"field_type": "BarSchema"}}],
+    base=FooBaseSchema,
+)
 
 
-class BarSchema(DjBaseModel):
+BarSchema = create_django_schema(
+    Bar,
+    schema_name="BarSchema",
+)
 
-    class Config:
-        model = Bar
 
-
-class BazSchema(DjBaseModel):
-
-    class Config:
-        model = Baz
+BazSchema = create_django_schema(
+    Baz,
+    schema_name="BazSchema",
+)
