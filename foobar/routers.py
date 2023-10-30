@@ -6,7 +6,7 @@ from fastapi_pagination.links import Page
 
 
 from .models import Foo, Bar, Baz
-from .schemas import FooBaseSchema, FooFullSchema, BarSchema, BazSchema, BazSchemaTwo
+from .schemas import FooBaseSchema, FooFullSchema, BarSchema, BazSchema, BazCreateSchema
 
 foo_router = APIRouter(prefix="/api/foos")
 bar_router = APIRouter(prefix="/api/bars")
@@ -28,8 +28,14 @@ def list_bazzes(request: Request) -> Page[BazSchema]:
 
 
 @baz_router.get("/{baz_id}")
-def baz_by_id(baz_id: int) -> BazSchemaTwo:
+def baz_by_id(baz_id: int) -> BazSchema:
     return Baz.objects.get(id=baz_id)
+
+
+@baz_router.post("/")
+def create_baz(baz: BazCreateSchema) -> BazSchema:
+    baz = Baz.objects.create(**baz.model_dump())
+    return baz
 
 
 @foo_router.get("/")

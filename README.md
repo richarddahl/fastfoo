@@ -24,13 +24,19 @@ Support creating BaseModel Fields for django Model, classmethods, properties, an
 ### Current Issues
 Support for multiple DjangoSchema's for a django Model is working but... requires a call to model_rebuild() for all additional DjangoSchemas created with ForwardRefs (all DjangoSchemas that contain related fields: FK, M2M, O2O) or an exception is raised that the related DjangoSchema does not exist at server startup.
 
-## How to use:
+If an exception is returned when creating new objects through a POST, FastAPI returns an Internal Server Error, instead of the actual error guidance.  NEED to understand how to incorporate django model validation (unique fields or Constraints on multiple unique fields)
+
+## How to see django_schema in action:
 Download source and place in a python3.11 virtual environment.
 run:
+
+`pip install -r requirements.txt`
 
 `python manage.py migrate`
 
 `python manage.py createsuperuser`
+
+`python manage.py createfoobardata`
 
 `python manage.py runserver`
 
@@ -58,4 +64,15 @@ http://127.0.0.1:8000/api/bazzes
 
 http://127.0.0.1:8000/api/bazzes/1 
 
-(substitue 1 for the id of a baz you associated with a foo in the django admin interface)
+(substitue 1 above for the id of a baz you associated with a foo in the django admin interface)
+
+## How django_schema works
+The foobar.schemas.py file contains calls to django_schema.create_django_schema for the following models.Model's:
+
+- FooBaseSchema
+- FooFullScheme
+- BarSchema
+- BazSchema
+- BazCreateSchema
+
+More to come...

@@ -35,12 +35,6 @@ BarSchema = create_django_schema(
 BazSchema = create_django_schema(
     Baz,
     schema_name="BazSchema",
-)
-
-BazSchemaTwo = create_django_schema(
-    Baz,
-    schema_name="BazSchema",
-    bases=[BazSchema],
     model_attributes=[
         {
             "name": "related_foos",
@@ -50,6 +44,12 @@ BazSchemaTwo = create_django_schema(
             "default": None,
         },
     ],
+)
+
+BazCreateSchema = create_django_schema(
+    Baz,
+    exclude=["id"],
+    schema_name="BazCreateSchema",
 )
 
 FooFullSchema = create_django_schema(

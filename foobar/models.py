@@ -178,6 +178,7 @@ class Baz(models.Model):
 
     name = models.CharField(
         max_length=50,
+        unique=True,
         verbose_name=_("Name"),
         help_text=_("The name of the Baz."),
     )
