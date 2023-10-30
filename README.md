@@ -75,12 +75,14 @@ View the API reference and test creating a Baz.
 
 ## How django_schema works
 
-The foobar.schemas.py file contains calls to django_schema.create_django_schema for the following models.Model's:
+The `foobar.schemas.py` file contains calls to django_schema.create_django_schema for the following models.Model's:
 
 - FooBaseSchema
 - FooFullScheme
 - BarSchema
 - BazSchema
 - BazCreateSchema
+
+These are imported into `foobar.routers` for use as the resopnse_models for api endpoints.
 
 More to come...
