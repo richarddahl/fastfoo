@@ -1,17 +1,58 @@
-## Demonstration of django_schema
+# Demonstration of django_schema
 
 Inspired by djantic.  
 
-### Goal:
-Define automated process that uses django Models and an optional configuration info to define Pydantic BaseModels for FastAPI.
+### Project Goal:
+Define script that uses Pydantic's create_model and a group of functions that loop through a django models.Model fields to create a Pydantic Base Model (DjangoSchema) for the models.Model.
+
+**DEVELOPMENT IN PROGRESS**
+
+Optionally, the function accepts configuration information  that can be used to customize the schema and include class/instance methods and properties from the models.Model.
 
 ### Overall Guidance
 Use only public classes, methods, and functions from Pydantic: Successful
-Use only one internal class method in django models._meta.get_fields(): Successful
+
+Use only one internal class method in django (models._meta.get_fields()): Successful
+
+Allow for creation of multiple Pydantic Base Models for a given django models.Model, using Pydantic's normal __base__ kwarg to create_model with the field inheritance it facilitates
 
 ### Desired Functionality:
-Support all pydantic BaseModel configuration options: Incomplete
+Support all pydantic BaseModel configuration options: Incomplete, not all pydantic create_model and Field options supported.
 
 Support creating BaseModel Fields for django Model, classmethods, properties, and instance methods:  Incomplete, needs addt'l configuraiton options supported.
 
-Support multiple BaseModel for each django Model, if desired: NOT WORKING CORRECTLY
+### Current Issues
+Support for multiple DjangoSchema's for a django Model is working but... requires a call to model_rebuild() for all additional DjangoSchemas created with ForwardRefs (all DjangoSchemas that contain related fields: FK, M2M, O2O) or an exception is raised that the related DjangoSchema does not exist at server startup.
+
+## How to use:
+Download source and place in a python3.11 virtual environment.
+run:
+
+`python manage.py migrate`
+
+`python manage.py createsuperuser`
+
+`python manage.py runserver`
+
+This will launch the django app at localhost:
+
+go to: http://1270.0.1:8000/admin
+
+Log in the credentials used in `createsuperuser`
+
+Add some Bazzes to a Foo through the admin interface.
+
+Press: `ctrl + c` in the termnial to stop the django dev server
+
+run `uvicorn main:app --reload` to start the FastApi Server
+
+go to:
+http://localhost:8000/api/foos
+
+http://localhost:8000/api/foos/1
+
+http://localhost:8000/api/bars
+
+http://localhost:8000/api/bazzes
+
+http://localhost:8000/api/bazzes/1 (substitue 1 for the id of a baz you associated with a foo in the django admin interface)
