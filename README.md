@@ -24,7 +24,7 @@ Support creating BaseModel Fields for django Model, classmethods, properties, an
 ### Current Issues
 Support for multiple DjangoSchema's for a django Model is working but... requires a call to model_rebuild() for all additional DjangoSchemas created with ForwardRefs (all DjangoSchemas that contain related fields: FK, M2M, O2O) or an exception is raised that the related DjangoSchema does not exist at server startup.
 
-If an exception is returned when creating new objects through a POST, FastAPI returns an Internal Server Error, instead of the actual error guidance.  NEED to understand how to incorporate django model validation (unique fields or Constraints on multiple unique fields)
+If an exception is returned when creating new objects through a POST, FastAPI returns the message of the error.  TODO: make the exception messages more granular to the fields if possible.
 
 ## How to see django_schema in action:
 Download source and place in a python3.11 virtual environment.

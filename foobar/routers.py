@@ -1,5 +1,5 @@
 from typing import List
-from fastapi import APIRouter, Request, Query
+from fastapi import APIRouter, Request, Query, HTTPException
 
 from fastapi_pagination.ext.django import paginate as django_paginate
 from fastapi_pagination.links import Page
@@ -34,7 +34,10 @@ def baz_by_id(baz_id: int) -> BazSchema:
 
 @baz_router.post("/")
 def create_baz(baz: BazCreateSchema) -> BazSchema:
-    baz = Baz.objects.create(**baz.model_dump())
+    try:
+        baz = Baz.objects.create(**baz.model_dump())
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e)) from e
     return baz
 
 
