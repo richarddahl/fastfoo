@@ -1,3 +1,4 @@
+from typing import List
 from fastapi import APIRouter, Request, Query
 
 from fastapi_pagination.ext.django import paginate as django_paginate
@@ -5,7 +6,7 @@ from fastapi_pagination.links import Page
 
 
 from .models import Foo, Bar, Baz
-from .schemas import FooBaseSchema, FooFullSchema, BarSchema, BazSchema
+from .schemas import FooBaseSchema, FooFullSchema, BarSchema, BazSchema, BazSchemaTwo
 
 foo_router = APIRouter(prefix="/api/foos")
 bar_router = APIRouter(prefix="/api/bars")
@@ -26,18 +27,17 @@ def list_bazzes(request: Request) -> Page[BazSchema]:
     return django_paginate(bazzes)
 
 
+@baz_router.get("/{baz_id}")
+def baz_by_id(baz_id: int) -> BazSchemaTwo:
+    return Baz.objects.get(id=baz_id)
+
+
 @foo_router.get("/")
 def list_foos(request: Request) -> Page[FooBaseSchema]:
     foos = Foo.objects.all()
     return django_paginate(foos)
 
 
-#@foo_router.get("/{foo_id}")
-#def foo_by_id(foo_id: int) -> FooFullSchema:
-#    return Foo.objects.filter(id=foo_id)
-
-
 @foo_router.get("/{foo_id}")
-def foo_by_id(foo_id: int) -> Page[FooFullSchema]:
-    foo = Foo.objects.filter(id=foo_id)
-    return django_paginate(foo)
+def foo_by_id(foo_id: int) -> FooFullSchema:
+    return Foo.objects.get(id=foo_id)

@@ -1,3 +1,5 @@
+from typing import List, Any
+
 from .models import Foo, Bar, Baz
 from django_schema import create_django_schema
 
@@ -24,14 +26,6 @@ FooBaseSchema = create_django_schema(
     ],
 )
 
-FooFullSchema = create_django_schema(
-    Foo,
-    schema_name="FooFullSchema",
-    # field_configs=[{"bar": {"field_type": "BarSchema"}}],
-    base=FooBaseSchema,
-)
-
-
 BarSchema = create_django_schema(
     Bar,
     schema_name="BarSchema",
@@ -42,3 +36,27 @@ BazSchema = create_django_schema(
     Baz,
     schema_name="BazSchema",
 )
+
+BazSchemaTwo = create_django_schema(
+    Baz,
+    schema_name="BazSchema",
+    bases=[BazSchema],
+    model_attributes=[
+        {
+            "name": "related_foos",
+            "type": List[dict[str, Any]],
+            "title": "Related Foos",
+            "description": "All the Foos related to this Baz",
+            "default": None,
+        },
+    ],
+)
+
+FooFullSchema = create_django_schema(
+    Foo,
+    schema_name="FooFullSchema",
+    # field_configs=[{"bar": {"field_type": "BarSchema"}}],
+    bases=[FooBaseSchema],
+)
+
+FooFullSchema.model_rebuild()

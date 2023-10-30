@@ -1,3 +1,5 @@
+from typing import List, Any
+
 from django.db import models
 from django.utils.translation import gettext as _
 
@@ -187,3 +189,6 @@ class Baz(models.Model):
 
     def __str__(self):
         return self.name
+
+    def related_foos(self) -> List[str]:
+        return self.foos.all().values("id", "name")
