@@ -59,4 +59,7 @@ FooFullSchema = create_django_schema(
     bases=[FooBaseSchema],
 )
 
+# called to prevent exception upon uvicorn startup
+# about BarSchema not existing yet, due to it's
+# use of a typing.ForwardRef
 FooFullSchema.model_rebuild()

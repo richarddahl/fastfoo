@@ -74,6 +74,7 @@ View the API reference and test creating a Baz.
 **It will fail if you give it the name of an existing baz.**
 
 ## How django_schema works
+
 The foobar.schemas.py file contains calls to django_schema.create_django_schema for the following models.Model's:
 
 - FooBaseSchema
