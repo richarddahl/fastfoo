@@ -47,12 +47,15 @@ Press: `ctrl + c` in the termnial to stop the django dev server
 run `uvicorn main:app --reload` to start the FastApi Server
 
 go to:
-http://localhost:8000/api/foos
 
-http://localhost:8000/api/foos/1
+http://127.0.0.1:8000/api/foos
 
-http://localhost:8000/api/bars
+http://127.0.0.1:8000/api/foos/1
 
-http://localhost:8000/api/bazzes
+http://127.0.0.1:8000/api/bars
 
-http://localhost:8000/api/bazzes/1 (substitue 1 for the id of a baz you associated with a foo in the django admin interface)
+http://127.0.0.1:8000/api/bazzes
+
+http://127.0.0.1:8000/api/bazzes/1 
+
+(substitue 1 for the id of a baz you associated with a foo in the django admin interface)
